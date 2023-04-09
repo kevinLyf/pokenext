@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 .pokemon-wrapper {
-  @apply mx-auto max-w-7xl grid place-items-center gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4 sm:px-6 lg:px-8;
+  @apply mx-auto max-w-7xl grid place-items-center gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 p-4 sm:px-6 lg:px-8;
 }
 
 .pokemon-card {
-  @apply w-full h-full flex items-center justify-center bg-green-400 flex-col p-4 text-white hover:brightness-95 cursor-pointer rounded;
+  @apply w-full h-full flex items-center justify-center bg-green-400 flex-col p-3 text-white hover:brightness-95 cursor-pointer rounded;
 }
 .pokemon-card-body {
   @apply w-full flex items-center justify-between;
@@ -18,7 +18,7 @@
 }
 
 .pokemon-card-wrapper {
-  @apply flex items-center gap-2;
+  @apply flex items-center gap-1;
 }
 .pokemon-card-type {
   @apply py-1 px-3 text-lg font-medium text-slate-600 bg-white border border-slate-600 rounded;
@@ -29,7 +29,7 @@
 }
 
 .btn-load {
-    @apply w-full md:w-2/6 py-3 sm:py-2 px-4 text-xl text-white font-medium bg-red-500 rounded-sm hover:bg-red-600 whitespace-nowrap transition-all;
+    @apply  w-full md:w-2/6 flex items-center justify-center py-3 sm:py-2 px-4 text-xl text-white font-medium bg-red-500 rounded-sm hover:bg-red-600 whitespace-nowrap transition-all;
 }
 
 .grass {

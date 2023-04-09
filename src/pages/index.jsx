@@ -1,12 +1,56 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
+import { ThreeDots } from "react-loader-spinner";
+
+function whatType(type) {
+  switch (type) {
+    case "water":
+      return "water";
+    case "ice":
+      return "ice";
+    case "fire":
+      return "fire";
+    case "electric":
+      return "electric";
+    case "grass":
+      return "grass";
+    case "poison":
+      return "poison";
+    case "rock":
+      return "rock";
+    case "ground":
+      return "ground";
+    case "steel":
+      return "steel";
+    case "fairy":
+      return "fairy";
+    case "bug":
+      return "bug";
+    case "normal":
+      return "normal";
+    case "fighting":
+      return "fighting";
+    case "psychic":
+      return "psychic";
+    case "ghost":
+      return "ghost";
+    case "dark":
+      return "dark";
+    case "dragon":
+      return "dragon";
+    default:
+      return "unknown";
+  }
+}
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
   const [pokemonAmount, setPokemonAmount] = useState(16);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchPokemons = async () => {
+      setIsLoading(true);
       const response = await fetch(
         `https://pokeapi.co/api/v2/pokemon?limit=${pokemonAmount}`
       );
@@ -18,7 +62,6 @@ function App() {
           const response = await fetch(pokemon.url);
           const data = await response.json();
           const types = data.types.map((type) => type.type.name);
-
           return {
             id: data.id,
             name: data.name,
@@ -28,51 +71,11 @@ function App() {
       );
 
       setPokemons(pokemonData);
+      setIsLoading(false);
     };
 
     fetchPokemons();
   }, [pokemonAmount]);
-
-  function choiceType(type) {
-    switch (type) {
-      case "water":
-        return "water";
-      case "ice":
-        return "ice";
-      case "fire":
-        return "fire";
-      case "electric":
-        return "electric";
-      case "grass":
-        return "grass";
-      case "poison":
-        return "poison";
-      case "rock":
-        return "rock";
-      case "ground":
-        return "ground";
-      case "steel":
-        return "steel";
-      case "fairy":
-        return "fairy";
-      case "bug":
-        return "bug";
-      case "normal":
-        return "normal";
-      case "fighting":
-        return "fighting";
-      case "psychic":
-        return "psychic";
-      case "ghost":
-        return "ghost";
-      case "dark":
-        return "dark";
-      case "dragon":
-        return "dragon";
-      default:
-        return "unknown";
-    }
-  }
 
   function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -83,7 +86,7 @@ function App() {
       <div className="pokemon-wrapper">
         {pokemons.map((pokemon) => (
           <div
-            className={`pokemon-card ${choiceType(pokemon.types[0])}`}
+            className={`pokemon-card ${whatType(pokemon.types[0])}`}
             key={pokemon.id}
           >
             <Image
@@ -114,7 +117,20 @@ function App() {
           className="btn-load"
           onClick={() => setPokemonAmount((amount) => amount + 8)}
         >
-          Load More
+          {isLoading ? (
+            <ThreeDots
+              height="28"
+              width="28"
+              radius="9"
+              color="#fff"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{}}
+              wrapperClassName=""
+              visible={true}
+            />
+          ) : (
+            "Load More"
+          )}
         </button>
       </div>
     </main>
