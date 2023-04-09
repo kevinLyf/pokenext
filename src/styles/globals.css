@@ -30,7 +30,7 @@
 }
 
 .pokemon-card-wrapper {
-  @apply flex items-center gap-1;
+  @apply flex items-center gap-3;
 }
 .pokemon-card-type {
   @apply truncate max-w-full py-1 px-2 text-lg shadow-sm text-white bg-white brightness-105 rounded;

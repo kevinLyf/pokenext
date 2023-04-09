@@ -46,6 +46,14 @@ function App() {
     fetchPokemons();
   }, [pokemonAmount]);
 
+  function tryGif(pokemonId) {
+    try {
+      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemonId}.gif`;
+    } catch (err) {
+      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
+    }
+  }
+
   return (
     <main>
       <section className="mx-auto max-w-7xl my-4 p-4 sm:px-6 lg:px-8">
@@ -76,7 +84,7 @@ function App() {
               type="text"
               value={pokemonName}
               onChange={(e) => setPokemonName(e.target.value)}
-              placeholder="Enter a Pokemon name or id"
+              placeholder="Pokemon name or id"
               className="input-search"
               required
             />
@@ -86,6 +94,7 @@ function App() {
           </div>
         </form>
       </section>
+
       <section>
         <div className="pokemon-wrapper">
           {pokemons.map((pokemon) => (
@@ -98,10 +107,13 @@ function App() {
                 <img
                   className="w-28 h-28"
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemon.id}.gif`}
+                  onError={(e) =>
+                    (e.target.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`)
+                  }
                   alt={pokemon.name}
                 />
-                <div className="my-4">
-                  <p className="truncate text-2xl">
+                <div className="w-full my-4">
+                  <p className="truncate text-center text-2xl">
                     {capitalize(pokemon.name)}
                   </p>
                 </div>
@@ -129,7 +141,7 @@ function App() {
       <div className="div-btn-load">
         <button
           className="btn-load"
-          onClick={() => setPokemonAmount((amount) => amount + 20)}
+          onClick={() => setPokemonAmount((amount) => amount + 1000)}
           disabled={isLoading}
         >
           {isLoading ? (
