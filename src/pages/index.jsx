@@ -1,7 +1,7 @@
-import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import getType from "../hooks/getType";
 import capitalize from "../hooks/capitalize";
+import PokemonDetails from "../components/PokemonDetails";
 import { ThreeDots } from "react-loader-spinner";
 import Link from "next/link";
 
@@ -9,8 +9,13 @@ function App() {
   const [pokemons, setPokemons] = useState([]);
   const [pokemonAmount, setPokemonAmount] = useState(16);
   const [isLoading, setIsLoading] = useState(false);
-  const [search, setSearch] = useState("");
-  const [data, setData] = useState(null);
+  const [pokemonName, setPokemonName] = useState("");
+  const [isSearch, setIsSearch] = useState(false);
+
+  const searchHandle = (e) => {
+    e.preventDefault();
+    setIsSearch(true);
+  };
 
   useEffect(() => {
     const fetchPokemons = async () => {
@@ -43,14 +48,18 @@ function App() {
 
   return (
     <main>
-      <section className="mx-auto max-w-7xl p-4 sm:px-6 lg:px-8">
-        <form>
+      <section className="mx-auto max-w-7xl my-4 p-4 sm:px-6 lg:px-8">
+        <PokemonDetails
+          pokemonName={pokemonName}
+          isSearch={isSearch}
+          setIsSearch={setIsSearch}
+        />
+        <form onSubmit={searchHandle} className="mt-7">
           <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
             Search
           </label>
-
           <div className="relative">
-            <div className="icon-search">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <svg
                 aria-hidden="true"
                 className="w-5 h-5 text-gray-500 dark:text-gray-400"
@@ -62,13 +71,12 @@ function App() {
                 <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
               </svg>
             </div>
-
             <input
-              type="search"
-              onChange={(e) => setSearch(e.target.value)}
-              id="default-search"
+              type="text"
+              value={pokemonName}
+              onChange={(e) => setPokemonName(e.target.value)}
+              placeholder="Enter a Pokemon name or id"
               className="input-search"
-              placeholder="Search Pokemon"
               required
             />
             <button type="submit" className="button-search">
@@ -86,10 +94,9 @@ function App() {
               key={pokemon.id}
             >
               <div className={`pokemon-card ${getType(pokemon.types[0])}`}>
-                <Image
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-                  width={150}
-                  height={150}
+                <img
+                  className="w-28 h-28"
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemon.id}.gif`}
                   alt={pokemon.name}
                 />
                 <div className="my-4">

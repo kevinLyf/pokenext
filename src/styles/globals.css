@@ -19,7 +19,7 @@
 }
 
 .pokemon-card {
-  @apply w-full h-full flex items-center justify-center bg-green-400 flex-col p-3 text-white hover:brightness-95 cursor-pointer drop-shadow rounded;
+  @apply w-full h-60 flex items-center justify-center bg-green-400 flex-col p-3 text-white hover:brightness-95 cursor-pointer drop-shadow rounded;
 }
 .pokemon-card-body {
   @apply w-full flex items-center justify-between;
