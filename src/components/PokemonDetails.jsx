@@ -3,7 +3,7 @@ import capitalize from "../hooks/capitalize";
 import getType from "@/hooks/getType";
 import UnknownPokemon from "./UnkownPokemon";
 
-function PokemonDetails({ pokemonName, isSearch, search, setIsSearch }) {
+function PokemonDetails({ pokemonName, isSearch, setIsSearch }) {
   const [pokemonData, setPokemonData] = useState(null);
 
   useEffect(() => {
@@ -29,6 +29,7 @@ function PokemonDetails({ pokemonName, isSearch, search, setIsSearch }) {
         <img
           className="w-auto h-28"
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemonData.id}.gif`}
+          onError={(e) => e.target.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonData.id}.png`}
           alt={pokemonData.name}
         />
 
