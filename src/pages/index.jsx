@@ -141,7 +141,7 @@ function App() {
       <div className="div-btn-load">
         <button
           className="btn-load"
-          onClick={() => setPokemonAmount((amount) => amount + 1000)}
+          onClick={() => setPokemonAmount((amount) => amount + 20)}
           disabled={isLoading}
         >
           {isLoading ? (
