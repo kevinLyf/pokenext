@@ -46,13 +46,6 @@ function App() {
     fetchPokemons();
   }, [pokemonAmount]);
 
-  function tryGif(pokemonId) {
-    try {
-      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemonId}.gif`;
-    } catch (err) {
-      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
-    }
-  }
 
   return (
     <main>
