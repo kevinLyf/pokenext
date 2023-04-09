@@ -4,6 +4,8 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head />
+      <title>Pokenext</title>
+      <link rel="icon" href="../../public/pokeball.png" />
       <body>
         <Main />
         <NextScript />
