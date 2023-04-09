@@ -7,29 +7,29 @@
 }
 
 .pokemon-card {
-  @apply w-full h-full flex items-center justify-center bg-green-400 flex-col p-3 text-white hover:brightness-95 cursor-pointer rounded;
+  @apply w-full h-full flex items-center justify-center bg-green-400 flex-col p-3 text-white hover:brightness-95 cursor-pointer drop-shadow rounded;
 }
 .pokemon-card-body {
   @apply w-full flex items-center justify-between;
 }
 
 .pokemon-card-id {
-  @apply w-9 h-9 p-4 flex items-center justify-center text-lg font-medium text-slate-600 bg-white border border-slate-600 rounded-full;
+  @apply text-xl font-medium text-white;
 }
 
 .pokemon-card-wrapper {
   @apply flex items-center gap-1;
 }
 .pokemon-card-type {
-  @apply py-1 px-3 text-lg font-medium text-slate-600 bg-white border border-slate-600 rounded;
+  @apply truncate max-w-full py-1 px-2 text-lg shadow-sm text-white bg-white brightness-105 rounded;
 }
 
 .div-btn-load {
-    @apply w-full h-full flex items-center justify-center my-4 px-4;
+  @apply w-full h-full flex items-center justify-center my-4 px-4;
 }
 
 .btn-load {
-    @apply  w-full md:w-2/6 flex items-center justify-center py-3 sm:py-2 px-4 text-xl text-white font-medium bg-red-500 rounded-sm hover:bg-red-600 whitespace-nowrap transition-all;
+  @apply w-full md:w-2/6 flex items-center justify-center py-3 sm:py-2 px-4 text-xl text-white font-medium bg-red-500 rounded-sm hover:bg-red-600 whitespace-nowrap transition-all;
 }
 
 .grass {

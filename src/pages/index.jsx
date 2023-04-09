@@ -2,7 +2,7 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { ThreeDots } from "react-loader-spinner";
 
-function whatType(type) {
+function getType(type) {
   switch (type) {
     case "water":
       return "water";
@@ -86,7 +86,7 @@ function App() {
       <div className="pokemon-wrapper">
         {pokemons.map((pokemon) => (
           <div
-            className={`pokemon-card ${whatType(pokemon.types[0])}`}
+            className={`pokemon-card ${getType(pokemon.types[0])}`}
             key={pokemon.id}
           >
             <Image
@@ -96,14 +96,14 @@ function App() {
               alt={pokemon.name}
             />
             <div className="my-4">
-              <p className="text-2xl">{capitalize(pokemon.name)}</p>
+              <p className="truncate text-2xl">{capitalize(pokemon.name)}</p>
             </div>
             <div className="pokemon-card-body">
               <p className="pokemon-card-id">{pokemon.id}</p>
               <div className="pokemon-card-wrapper">
-                {pokemon.types.map((type) => (
-                  <p className="pokemon-card-type" key={type + pokemon.id}>
-                    {capitalize(type)}
+                {pokemon.types.map((type, index) => (
+                  <p className={`pokemon-card-type ${getType(pokemon.types[index])}`} key={type + pokemon.id}>
+                    {type}
                   </p>
                 ))}
               </div>
@@ -115,7 +115,8 @@ function App() {
       <div className="div-btn-load">
         <button
           className="btn-load"
-          onClick={() => setPokemonAmount((amount) => amount + 8)}
+          onClick={() => setPokemonAmount((amount) => amount + 20)}
+          disabled={isLoading}
         >
           {isLoading ? (
             <ThreeDots
