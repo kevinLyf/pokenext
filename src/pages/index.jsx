@@ -3,11 +3,12 @@ import React, { useState, useEffect } from "react";
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
+  const [pokemonAmount, setPokemonAmount] = useState(16);
 
   useEffect(() => {
     const fetchPokemons = async () => {
       const response = await fetch(
-        "https://pokeapi.co/api/v2/pokemon?limit=251"
+        `https://pokeapi.co/api/v2/pokemon?limit=${pokemonAmount}`
       );
       const data = await response.json();
       const results = data.results;
@@ -30,7 +31,7 @@ function App() {
     };
 
     fetchPokemons();
-  }, []);
+  }, [pokemonAmount]);
 
   function choiceType(type) {
     switch (type) {
@@ -73,35 +74,50 @@ function App() {
     }
   }
 
+  function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
-    <div className="pokemon-wrapper">
-      {pokemons.map((pokemon) => (
-        <div
-          className={`pokemon-card ${choiceType(pokemon.types[0])}`}
-          key={pokemon.id}
-        >
-          <Image
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-            width={150}
-            height={150}
-            alt={pokemon.name}
-          />
-          <div className="my-4">
-            <p className="text-2xl">{pokemon.name}</p>
-          </div>
-          <div className="pokemon-card-body">
-            <p className="pokemon-card-id">{pokemon.id}</p>
-            <div className="pokemon-card-wrapper">
-              {pokemon.types.map((type) => (
-                <p className="pokemon-card-type" key={type + pokemon.id}>
-                  {type}
-                </p>
-              ))}
+    <main>
+      <div className="pokemon-wrapper">
+        {pokemons.map((pokemon) => (
+          <div
+            className={`pokemon-card ${choiceType(pokemon.types[0])}`}
+            key={pokemon.id}
+          >
+            <Image
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+              width={150}
+              height={150}
+              alt={pokemon.name}
+            />
+            <div className="my-4">
+              <p className="text-2xl">{capitalize(pokemon.name)}</p>
+            </div>
+            <div className="pokemon-card-body">
+              <p className="pokemon-card-id">{pokemon.id}</p>
+              <div className="pokemon-card-wrapper">
+                {pokemon.types.map((type) => (
+                  <p className="pokemon-card-type" key={type + pokemon.id}>
+                    {capitalize(type)}
+                  </p>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+
+      <div className="div-btn-load">
+        <button
+          className="btn-load"
+          onClick={() => setPokemonAmount((amount) => amount + 8)}
+        >
+          Load More
+        </button>
+      </div>
+    </main>
   );
 }
 
