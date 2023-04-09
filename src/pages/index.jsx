@@ -1,47 +1,108 @@
 import Image from "next/image";
+import React, { useState, useEffect } from "react";
 
-export async function getStaticProps() {
-  const maxPokemons = 23;
-  const api = "https://pokeapi.co/api/v2/pokemon";
+function App() {
+  const [pokemons, setPokemons] = useState([]);
 
-  const res = await fetch(`${api}/?limit=${maxPokemons}`);
-  const data = await res.json();
+  useEffect(() => {
+    const fetchPokemons = async () => {
+      const response = await fetch(
+        "https://pokeapi.co/api/v2/pokemon?limit=251"
+      );
+      const data = await response.json();
+      const results = data.results;
 
-  data.results.forEach((item, index) => {
-    item.id = index + 1;
-  });
+      const pokemonData = await Promise.all(
+        results.map(async (pokemon) => {
+          const response = await fetch(pokemon.url);
+          const data = await response.json();
+          const types = data.types.map((type) => type.type.name);
 
-  return {
-    props: {
-      pokemons: data.results,
-    },
-  };
-}
+          return {
+            id: data.id,
+            name: data.name,
+            types: types,
+          };
+        })
+      );
 
-export default function Home({ pokemons }) {
+      setPokemons(pokemonData);
+    };
+
+    fetchPokemons();
+  }, []);
+
+  function choiceType(type) {
+    switch (type) {
+      case "water":
+        return "water";
+      case "ice":
+        return "ice";
+      case "fire":
+        return "fire";
+      case "electric":
+        return "electric";
+      case "grass":
+        return "grass";
+      case "poison":
+        return "poison";
+      case "rock":
+        return "rock";
+      case "ground":
+        return "ground";
+      case "steel":
+        return "steel";
+      case "fairy":
+        return "fairy";
+      case "bug":
+        return "bug";
+      case "normal":
+        return "normal";
+      case "fighting":
+        return "fighting";
+      case "psychic":
+        return "psychic";
+      case "ghost":
+        return "ghost";
+      case "dark":
+        return "dark";
+      case "dragon":
+        return "dragon";
+      default:
+        return "unknown";
+    }
+  }
+
   return (
-    <>
-      <div className="mx-auto max-w-7xl grid place-items-center gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4 sm:px-6 lg:px-8">
-        {pokemons.map((pokemon) => (
-          <div
-            className="w-11/12 sm:w-full h-full flex items-center justify-center flex-col p-4 bg-red-500 text-white rounded"
-            key={pokemon.id}
-          >
-            <div className="flex align-middle justify-center">
-              <Image
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-                width="130"
-                height="130"
-                alt={pokemon.name}
-              />
-            </div>
-            <div className="flex gap-4 items-center justify-center">
-              <span className="text-2xl">{pokemon.id}</span>
-              <h3 className="text-2xl">{pokemon.name}</h3>
+    <div className="pokemon-wrapper">
+      {pokemons.map((pokemon) => (
+        <div
+          className={`pokemon-card ${choiceType(pokemon.types[0])}`}
+          key={pokemon.id}
+        >
+          <Image
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+            width={150}
+            height={150}
+            alt={pokemon.name}
+          />
+          <div className="my-4">
+            <p className="text-2xl">{pokemon.name}</p>
+          </div>
+          <div className="pokemon-card-body">
+            <p className="pokemon-card-id">{pokemon.id}</p>
+            <div className="pokemon-card-wrapper">
+              {pokemon.types.map((type) => (
+                <p className="pokemon-card-type" key={type + pokemon.id}>
+                  {type}
+                </p>
+              ))}
             </div>
           </div>
-        ))}
-      </div>
-    </>
+        </div>
+      ))}
+    </div>
   );
 }
+
+export default App;

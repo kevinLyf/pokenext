@@ -1,3 +1,97 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.pokemon-wrapper {
+  @apply mx-auto max-w-7xl grid place-items-center gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4 sm:px-6 lg:px-8;
+}
+
+.pokemon-card {
+  @apply w-full h-full flex items-center justify-center bg-green-400 flex-col p-4 text-white hover:brightness-95 cursor-pointer rounded;
+}
+.pokemon-card-body {
+  @apply w-full flex items-center justify-between;
+}
+
+.pokemon-card-id {
+  @apply w-9 h-9 flex items-center justify-center text-lg font-medium text-slate-600 bg-white border border-slate-600 rounded-full;
+}
+
+.pokemon-card-wrapper {
+  @apply flex items-center gap-2;
+}
+.pokemon-card-type {
+  @apply py-1 px-3 text-lg font-medium text-slate-600 bg-white border border-slate-600 rounded;
+}
+
+.grass {
+  @apply bg-green-400;
+}
+
+.electric {
+  @apply bg-yellow-400;
+}
+
+.water {
+  @apply bg-blue-400;
+}
+
+.ice {
+  @apply bg-blue-600;
+}
+
+.fire {
+  @apply bg-red-500;
+}
+
+.rock {
+  @apply bg-orange-400;
+}
+
+.ground {
+  @apply bg-orange-600;
+}
+
+.poison {
+  @apply bg-purple-400;
+}
+
+.fairy {
+  @apply bg-pink-400;
+}
+
+.bug {
+  @apply bg-emerald-400;
+}
+
+.normal {
+  @apply bg-yellow-600;
+}
+
+.fighting {
+  @apply bg-yellow-700;
+}
+
+.psychic {
+  @apply bg-pink-500;
+}
+
+.ghost {
+  @apply bg-gray-500;
+}
+
+.dark {
+  @apply bg-slate-800;
+}
+
+.dragon {
+  @apply bg-red-600;
+}
+
+.steel {
+  @apply bg-slate-400;
+}
+
+.unknown {
+  @apply bg-zinc-800;
+}
