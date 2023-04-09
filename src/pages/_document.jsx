@@ -5,7 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <title>Pokenext</title>
-      <link rel="icon" href="../../public/pokeball.png" />
+      <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/512px-Pok%C3%A9_Ball_icon.svg.png" />
       <body>
         <Main />
         <NextScript />
