@@ -52,6 +52,7 @@ function App() {
         <PokemonDetails
           pokemonName={pokemonName}
           isSearch={isSearch}
+          search={pokemonName}
           setIsSearch={setIsSearch}
         />
         <form onSubmit={searchHandle} className="mt-7">

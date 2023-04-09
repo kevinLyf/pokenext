@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import capitalize from "../hooks/capitalize";
 import getType from "@/hooks/getType";
 
-function PokemonDetails({ pokemonName, isSearch, setIsSearch }) {
+function PokemonDetails({ pokemonName, isSearch, search, setIsSearch }) {
   const [pokemonData, setPokemonData] = useState(null);
 
   useEffect(() => {
@@ -17,17 +17,27 @@ function PokemonDetails({ pokemonName, isSearch, setIsSearch }) {
   }, [pokemonName, isSearch]);
 
   if (!pokemonData) {
-    return <div>Loading...</div>;
-  }
+    return (
+      <div className="pokemon-card unknown">
+        <img
+          className="w-auto h-28"
+          src="https://o.remove.bg/downloads/9f9f3e53-d63f-4077-8c63-945be92fe1aa/image-removebg-preview.png"
+          alt="unknown pokemon"
+        />
+        <div className="my-4">
+          <p className="truncate text-2xl">unknown</p>
+        </div>
 
-  const types = pokemonData.types.map((type) => (
-    <p
-      className={`pokemon-card-type ${getType(type.type.name)}`}
-      key={type + pokemonData.id}
-    >
-      {type.type.name}
-    </p>
-  ));
+        <div className="pokemon-card-body">
+          <p className="pokemon-card-id">unknown</p>
+
+          <div className="pokemon-card-wrapper">
+            <p className="pokemon-card-type unknown">unknown</p>            
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full">
@@ -65,7 +75,6 @@ function PokemonDetails({ pokemonName, isSearch, setIsSearch }) {
                 {pokemonData.types[1].type.name}
               </p>
             )}
-
           </div>
         </div>
       </div>
