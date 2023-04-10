@@ -33,8 +33,8 @@ function PokemonDetails({ pokemonName, isSearch, setIsSearch }) {
           alt={pokemonData.name}
         />
 
-        <div className="my-4">
-          <p className="truncate text-2xl">{capitalize(pokemonData.name)}</p>
+        <div className="w-full my-4 truncate text-center">
+          <p className="text-2xl">{capitalize(pokemonData.name)}</p>
         </div>
 
         <div className="pokemon-card-body">
