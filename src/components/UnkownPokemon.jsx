@@ -3,7 +3,7 @@ export default function UnknownPokemon() {
     <div className="pokemon-card unknown">
       <img
         className="w-auto h-28"
-        src="https://o.remove.bg/downloads/9f9f3e53-d63f-4077-8c63-945be92fe1aa/image-removebg-preview.png"
+        src="/images/unknown-pokemon.png"
         alt="unknown pokemon"
       />
       <div className="my-4">
