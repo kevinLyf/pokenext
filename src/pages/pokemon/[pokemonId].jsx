@@ -231,7 +231,7 @@ export default function PokemonId({ pokemon, abilities }) {
           </div>
         </div>
 
-        <div className="py-8">
+        <div className="">
           <h1 className="font-medium text-2xl text-slate-600">Abilities</h1>
 
           <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 mt-6 font-medium text-white">
