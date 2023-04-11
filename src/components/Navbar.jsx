@@ -1,16 +1,19 @@
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-
-const navigation = [
-  { name: "Home", href: "/", current: true },
-  { name: "About", href: "/about", current: false },
-];
+import { useRouter } from "next/router";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
+  const router = useRouter();
+
+  const navigation = [
+    { name: "Home", href: "/", current: router.pathname === "/" },
+    { name: "About", href: "/about", current: router.pathname === "/about" },
+  ];
+
   return (
     <Disclosure as="nav" className="bg-gray-800 sticky top-0 z-50">
       {({ open }) => (

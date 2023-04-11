@@ -8,7 +8,7 @@ export default function About() {
       />
       <div className="mt-5">
         <h1 className="text-2xl text-slate-800">Hello Everyone!</h1>
-        <p className="sm:text-xl text-slate-700">
+        <p className="mt-2 sm:text-xl text-slate-700">
           I created this Pokédex using Next.js and Tailwind CSS. To populate the
           Pokédex with data, I used the PokeAPI API. By using the PokeAPI API, I
           was able to get all the information I needed for each Pokemon,
