@@ -43,9 +43,7 @@ export async function getStaticProps(context) {
 }
 
 export default function PokemonId({ pokemon, abilities }) {
-  console.log(abilities);
 
-  console.log(pokemon);
   return (
     <main>
       <section className="mx-auto max-w-7xl my-4 p-4 sm:px-6 lg:px-8">
